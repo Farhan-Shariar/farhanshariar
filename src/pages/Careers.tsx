@@ -1,10 +1,11 @@
 import { motion } from "framer-motion";
-import { MapPin, Clock, Briefcase, Send } from "lucide-react";
+import { MapPin, Clock, Briefcase, Send, Paperclip, X, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { useState } from "react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { useRef, useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import Layout from "@/components/layout/Layout";
 
@@ -55,21 +56,52 @@ const jobOpenings = [
 
 const Careers = () => {
   const { toast } = useToast();
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [selectedPosition, setSelectedPosition] = useState("");
+  const [resumeFile, setResumeFile] = useState<File | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     portfolio: "",
-    position: "",
     message: "",
   });
+
+  const handleApply = (jobTitle: string) => {
+    setSelectedPosition(jobTitle);
+    setIsDialogOpen(true);
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     toast({
       title: "Application Submitted!",
-      description: "Thank you for your interest. We'll review your application and get back to you soon.",
+      description: `Thank you for applying for ${selectedPosition}. We'll review your application and get back to you soon.`,
     });
-    setFormData({ name: "", email: "", portfolio: "", position: "", message: "" });
+    setFormData({ name: "", email: "", portfolio: "", message: "" });
+    setResumeFile(null);
+    setIsDialogOpen(false);
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const maxSize = 10 * 1024 * 1024; // 10MB
+      const allowedTypes = [
+        "application/pdf",
+        "application/msword",
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      ];
+      if (!allowedTypes.includes(file.type)) {
+        toast({ title: "Invalid file type", description: "Please upload a PDF or DOC/DOCX file.", variant: "destructive" });
+        return;
+      }
+      if (file.size > maxSize) {
+        toast({ title: "File too large", description: "Maximum file size is 10MB.", variant: "destructive" });
+        return;
+      }
+      setResumeFile(file);
+    }
   };
 
   return (
@@ -122,10 +154,7 @@ const Careers = () => {
                   <Button
                     variant="outline"
                     className="border-primary/30 hover:bg-primary/10 shrink-0"
-                    onClick={() => {
-                      setFormData((prev) => ({ ...prev, position: job.title }));
-                      document.getElementById("apply-section")?.scrollIntoView({ behavior: "smooth" });
-                    }}
+                    onClick={() => handleApply(job.title)}
                   >
                     <Briefcase size={16} /> Apply Now
                   </Button>
@@ -150,26 +179,17 @@ const Careers = () => {
         </div>
       </section>
 
-      {/* Application Form */}
-      <section id="apply-section" className="py-16">
-        <div className="container mx-auto px-6 max-w-2xl">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="font-display text-3xl font-bold mb-12 text-center"
-          >
-            Apply <span className="text-gradient">Now</span>
-          </motion.h2>
+      {/* Application Dialog */}
+      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+        <DialogContent className="sm:max-w-lg max-h-[90vh] overflow-y-auto bg-card border-border">
+          <DialogHeader>
+            <DialogTitle className="font-display text-2xl">
+              Apply for <span className="text-gradient">{selectedPosition}</span>
+            </DialogTitle>
+          </DialogHeader>
 
-          <motion.form
-            onSubmit={handleSubmit}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="glass-card rounded-xl p-8 space-y-6 border border-border"
-          >
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <form onSubmit={handleSubmit} className="space-y-5 mt-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Label htmlFor="name">Full Name</Label>
                 <Input id="name" placeholder="Your name" value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} required />
@@ -179,26 +199,60 @@ const Careers = () => {
                 <Input id="email" type="email" placeholder="you@email.com" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} required />
               </div>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              <div className="space-y-2">
-                <Label htmlFor="position">Position</Label>
-                <Input id="position" placeholder="Position applying for" value={formData.position} onChange={(e) => setFormData({ ...formData, position: e.target.value })} required />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="portfolio">Portfolio / Resume URL</Label>
-                <Input id="portfolio" placeholder="https://..." value={formData.portfolio} onChange={(e) => setFormData({ ...formData, portfolio: e.target.value })} />
-              </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="portfolio">Portfolio URL (optional)</Label>
+              <Input id="portfolio" placeholder="https://yourportfolio.com" value={formData.portfolio} onChange={(e) => setFormData({ ...formData, portfolio: e.target.value })} />
             </div>
+
+            {/* Resume Upload */}
+            <div className="space-y-2">
+              <Label>Resume / CV</Label>
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept=".pdf,.doc,.docx"
+                onChange={handleFileChange}
+                className="hidden"
+              />
+              {resumeFile ? (
+                <div className="flex items-center gap-3 p-3 rounded-lg border border-border bg-muted/30">
+                  <FileText size={20} className="text-primary shrink-0" />
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm text-foreground truncate">{resumeFile.name}</p>
+                    <p className="text-xs text-muted-foreground">{(resumeFile.size / 1024).toFixed(0)} KB</p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => { setResumeFile(null); if (fileInputRef.current) fileInputRef.current.value = ""; }}
+                    className="text-muted-foreground hover:text-destructive transition-colors"
+                  >
+                    <X size={16} />
+                  </button>
+                </div>
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => fileInputRef.current?.click()}
+                  className="w-full flex items-center justify-center gap-2 p-4 rounded-lg border-2 border-dashed border-border hover:border-primary/40 text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  <Paperclip size={18} />
+                  <span className="text-sm">Attach Resume (PDF, DOC — max 10MB)</span>
+                </button>
+              )}
+            </div>
+
             <div className="space-y-2">
               <Label htmlFor="message">Cover Letter / Message</Label>
-              <Textarea id="message" placeholder="Tell us about yourself and why you'd be a great fit..." rows={5} value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} />
+              <Textarea id="message" placeholder="Tell us about yourself and why you'd be a great fit..." rows={4} value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} />
             </div>
+
             <Button type="submit" className="w-full bg-gradient-gold text-primary-foreground hover:opacity-90">
               <Send size={16} /> Submit Application
             </Button>
-          </motion.form>
-        </div>
-      </section>
+          </form>
+        </DialogContent>
+      </Dialog>
     </Layout>
   );
 };
