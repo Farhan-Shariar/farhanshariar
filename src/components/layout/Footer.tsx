@@ -40,7 +40,7 @@ const Footer = () => {
                 (service) => (
                   <Link to="/services" key={service} className="text-muted-foreground text-sm hover:text-primary transition-colors">
                     {service}
-                  </span>
+                  </Link>
                 )
               )}
             </div>
