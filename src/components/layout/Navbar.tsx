@@ -55,7 +55,7 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
         <Link to="/" className="font-display text-2xl font-bold text-gradient">
-          DevStudio
+          ByteVeo
         </Link>
 
         {/* Desktop Navigation */}
@@ -79,7 +79,7 @@ const Navbar = () => {
             {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
           </button>
           <Button asChild className="bg-gradient-gold text-primary-foreground hover:opacity-90">
-            <Link to="/contact">Hire Me</Link>
+            <Link to="/contact">Work With Us</Link>
           </Button>
         </div>
 
@@ -121,7 +121,7 @@ const Navbar = () => {
               </Link>
             ))}
             <Button asChild className="bg-gradient-gold text-primary-foreground mt-4">
-              <Link to="/contact">Hire Me</Link>
+              <Link to="/contact">Work With Us</Link>
             </Button>
           </div>
         </motion.div>

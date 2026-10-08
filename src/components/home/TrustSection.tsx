@@ -5,7 +5,7 @@ const trustIndicators = [
   { icon: Globe, label: "International Clients", description: "Working with businesses worldwide" },
   { icon: Shield, label: "Secure & Reliable", description: "100% secure development practices" },
   { icon: Award, label: "Quality Assured", description: "Premium standards guaranteed" },
-  { icon: Users, label: "Client Focused", description: "Your success is my priority" },
+  { icon: Users, label: "Client Focused", description: "Your success is our priority" },
 ];
 
 const TrustSection = () => {

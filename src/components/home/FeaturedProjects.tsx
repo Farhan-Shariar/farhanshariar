@@ -48,7 +48,7 @@ const FeaturedProjects = () => {
             <span className="text-primary uppercase tracking-widest text-sm font-medium">Portfolio</span>
             <h2 className="font-display text-4xl md:text-5xl font-bold mt-4">Featured Projects</h2>
             <p className="text-muted-foreground mt-4 max-w-xl">
-              A curated selection of my best work showcasing design excellence and technical expertise.
+              A curated selection of our work showcasing design excellence and technical expertise.
             </p>
           </div>
           <Link
