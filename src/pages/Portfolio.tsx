@@ -70,9 +70,9 @@ const Portfolio = () => {
             className="text-center max-w-3xl mx-auto"
           >
             <span className="text-primary uppercase tracking-widest text-sm font-medium">Portfolio</span>
-            <h1 className="font-display text-5xl md:text-6xl font-bold mt-4">My Work</h1>
+            <h1 className="font-display text-5xl md:text-6xl font-bold mt-4">Our Work</h1>
             <p className="text-muted-foreground text-lg mt-6">
-              A showcase of projects that represent my commitment to excellence, creativity, and results-driven design.
+              A showcase of projects that represent our commitment to excellence, creativity, and results-driven design.
             </p>
           </motion.div>
         </div>

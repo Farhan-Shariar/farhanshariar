@@ -1,39 +1,8 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Palette, Code, RefreshCw, Layout, Zap, Settings, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
-const services = [
-  {
-    icon: Palette,
-    title: "Custom Website Design",
-    description: "Bespoke, pixel-perfect designs that capture your brand essence and convert visitors into customers.",
-  },
-  {
-    icon: Code,
-    title: "WordPress Development",
-    description: "Robust, scalable WordPress solutions built with clean code and optimized for performance.",
-  },
-  {
-    icon: RefreshCw,
-    title: "Website Redesign",
-    description: "Transform your outdated website into a modern, high-converting digital experience.",
-  },
-  {
-    icon: Layout,
-    title: "Landing Page Design",
-    description: "High-impact landing pages engineered to maximize conversions and capture leads.",
-  },
-  {
-    icon: Zap,
-    title: "Speed Optimization",
-    description: "Lightning-fast load times that improve user experience and boost SEO rankings.",
-  },
-  {
-    icon: Settings,
-    title: "Website Maintenance",
-    description: "Ongoing support and maintenance to keep your website secure, updated, and performing.",
-  },
-];
+import { featuredServices as services } from "@/data/services";
 
 const ServicesSection = () => {
   return (
@@ -46,9 +15,9 @@ const ServicesSection = () => {
           className="text-center max-w-2xl mx-auto mb-16"
         >
           <span className="text-primary uppercase tracking-widest text-sm font-medium">Services</span>
-          <h2 className="font-display text-4xl md:text-5xl font-bold mt-4">What I Can Do For You</h2>
+          <h2 className="font-display text-4xl md:text-5xl font-bold mt-4">What We Can Build For You</h2>
           <p className="text-muted-foreground mt-4">
-            Comprehensive web solutions tailored to elevate your business and drive results.
+            Design, development and business software — tailored to elevate your business and drive results.
           </p>
         </motion.div>
 

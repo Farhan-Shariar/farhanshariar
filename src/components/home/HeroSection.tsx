@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 
 const HeroSection = () => {
   return (
-    <section className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
+    <section className="min-h-[min(900px,92svh)] flex items-center justify-center relative overflow-hidden pt-20">
       {/* Background Elements */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/10 via-background to-background" />
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
@@ -27,11 +27,10 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="font-display text-5xl md:text-7xl lg:text-8xl font-bold leading-tight"
+            className="font-display text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold leading-tight"
           >
-            Professional{" "}
-            <span className="text-gradient">Web Designer</span>
-            <br />& WordPress Developer
+            <span className="text-gradient">ByteVeo</span>
+            <br />Design & Software Agency
           </motion.h1>
 
           <motion.p
@@ -40,7 +39,7 @@ const HeroSection = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-muted-foreground text-lg md:text-xl mt-8 max-w-2xl mx-auto leading-relaxed"
           >
-            I craft premium, high-converting websites for ambitious businesses. From stunning designs to flawless WordPress development — let's build your digital presence.
+            We craft premium websites, mobile apps and custom software for ambitious businesses. From thoughtful UI/UX to powerful ERP and CRM solutions — we build what moves your business forward.
           </motion.p>
 
           <motion.div
@@ -51,12 +50,12 @@ const HeroSection = () => {
           >
             <Button asChild size="lg" className="bg-gradient-gold text-primary-foreground hover:opacity-90 px-8 group">
               <Link to="/portfolio">
-                View My Work
+                View Our Work
                 <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
               </Link>
             </Button>
             <Button asChild size="lg" variant="outline" className="border-primary/30 hover:bg-primary/10">
-              <Link to="/contact">Hire Me</Link>
+              <Link to="/contact">Work With Us</Link>
             </Button>
           </motion.div>
 
@@ -65,7 +64,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="grid grid-cols-3 gap-8 mt-20 max-w-lg mx-auto"
+            className="grid grid-cols-3 gap-4 mt-12 mb-12 max-w-lg mx-auto"
           >
             {[
               { number: "50+", label: "Projects Completed" },

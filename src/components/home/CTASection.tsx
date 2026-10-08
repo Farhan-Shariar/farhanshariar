@@ -22,7 +22,7 @@ const CTASection = () => {
             <span className="text-gradient"> Digital Presence?</span>
           </h2>
           <p className="text-muted-foreground text-lg mt-6 max-w-xl mx-auto">
-            Let's collaborate to create a website that not only looks stunning but drives real business results.
+            Let's collaborate to build websites, apps and software that look exceptional and drive real business results.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mt-10">

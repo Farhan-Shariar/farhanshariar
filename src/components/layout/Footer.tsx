@@ -9,10 +9,10 @@ const Footer = () => {
           {/* Brand */}
           <div className="md:col-span-1">
             <Link to="/" className="font-display text-2xl font-bold text-gradient">
-              DevStudio
+              ByteVeo
             </Link>
             <p className="text-muted-foreground mt-4 text-sm leading-relaxed">
-              Crafting premium digital experiences for businesses worldwide. Let's build something extraordinary together.
+              Websites, mobile apps and custom software for ambitious businesses. Let's build something extraordinary together.
             </p>
           </div>
 
@@ -36,9 +36,9 @@ const Footer = () => {
           <div>
             <h4 className="font-display font-semibold text-foreground mb-4">Services</h4>
             <div className="flex flex-col gap-3">
-              {["Website Design", "WordPress Development", "Landing Pages", "Speed Optimization", "Maintenance"].map(
+              {["Web & UI/UX Design", "Mobile Apps & Flutter", "Custom Software", "ERP & CRM", "E-commerce"].map(
                 (service) => (
-                  <span key={service} className="text-muted-foreground text-sm">
+                  <Link to="/services" key={service} className="text-muted-foreground text-sm hover:text-primary transition-colors">
                     {service}
                   </span>
                 )
@@ -51,15 +51,15 @@ const Footer = () => {
             <h4 className="font-display font-semibold text-foreground mb-4">Get in Touch</h4>
             <div className="flex flex-col gap-3">
               <a
-                href="mailto:hello@devstudio.com"
+                href="mailto:hello@byteveo.com"
                 className="flex items-center gap-2 text-muted-foreground text-sm hover:text-primary transition-colors"
               >
                 <Mail size={16} />
-                hello@devstudio.com
+                hello@byteveo.com
               </a>
               <span className="flex items-center gap-2 text-muted-foreground text-sm">
                 <MapPin size={16} />
-                Available Worldwide
+                Mohakhali, Dhaka
               </span>
               <div className="flex gap-4 mt-4">
                 <a
@@ -93,7 +93,7 @@ const Footer = () => {
 
         <div className="border-t border-border mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-muted-foreground text-sm">
-            © {new Date().getFullYear()} DevStudio. All rights reserved.
+            © {new Date().getFullYear()} ByteVeo. All rights reserved.
           </p>
           <div className="flex gap-6">
             <Link to="/privacy" className="text-muted-foreground text-sm hover:text-primary transition-colors">

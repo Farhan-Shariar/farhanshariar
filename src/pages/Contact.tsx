@@ -26,7 +26,7 @@ const Contact = () => {
     
     toast({
       title: "Message Sent!",
-      description: "Thank you for reaching out. I'll get back to you within 24 hours.",
+      description: "Thank you for reaching out. Our team will get back to you within 24 hours.",
     });
     
     setFormData({ name: "", email: "", budget: "", message: "" });
@@ -67,20 +67,20 @@ const Contact = () => {
               
               <div className="space-y-6">
                 <a
-                  href="mailto:hello@devstudio.com"
+                  href="mailto:hello@byteveo.com"
                   className="flex items-center gap-4 p-6 rounded-xl bg-card border border-border hover:border-primary/30 transition-all group"
                 >
                   <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
                     <Mail className="w-6 h-6 text-primary" />
                   </div>
                   <div>
-                    <h3 className="font-display font-semibold text-foreground">Email Me</h3>
-                    <p className="text-muted-foreground">hello@devstudio.com</p>
+                    <h3 className="font-display font-semibold text-foreground">Email Us</h3>
+                    <p className="text-muted-foreground">hello@byteveo.com</p>
                   </div>
                 </a>
 
                 <a
-                  href="https://wa.me/1234567890"
+                  href="https://wa.me/8801632275533"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-4 p-6 rounded-xl bg-card border border-border hover:border-primary/30 transition-all group"
@@ -90,7 +90,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="font-display font-semibold text-foreground">WhatsApp</h3>
-                    <p className="text-muted-foreground">Quick response guaranteed</p>
+                    <p className="text-muted-foreground">+8801632275533</p>
                   </div>
                 </a>
 
@@ -100,13 +100,13 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="font-display font-semibold text-foreground">Location</h3>
-                    <p className="text-muted-foreground">Available Worldwide</p>
+                    <p className="text-muted-foreground">Mohakhali, Dhaka</p>
                   </div>
                 </div>
               </div>
 
               <div className="mt-12 p-8 rounded-xl bg-gradient-to-br from-primary/10 to-transparent border border-primary/20">
-                <h3 className="font-display text-xl font-semibold text-foreground mb-4">Why Work With Me?</h3>
+                <h3 className="font-display text-xl font-semibold text-foreground mb-4">Why Work With Us?</h3>
                 <ul className="space-y-3 text-muted-foreground">
                   <li className="flex items-center gap-3">
                     <span className="w-2 h-2 rounded-full bg-primary" />
@@ -122,7 +122,7 @@ const Contact = () => {
                   </li>
                   <li className="flex items-center gap-3">
                     <span className="w-2 h-2 rounded-full bg-primary" />
-                    5+ years of experience
+                    A collaborative design & development team
                   </li>
                 </ul>
               </div>
@@ -163,7 +163,7 @@ const Contact = () => {
                   <div>
                     <label className="text-sm font-medium text-foreground mb-2 block">Project Budget</label>
                     <Input
-                      placeholder="$2,000 - $5,000"
+                      placeholder="Share your budget, or request a quote"
                       value={formData.budget}
                       onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
                       className="bg-secondary border-border"
@@ -173,7 +173,7 @@ const Contact = () => {
                   <div>
                     <label className="text-sm font-medium text-foreground mb-2 block">Project Description</label>
                     <Textarea
-                      placeholder="Tell me about your project..."
+                      placeholder="Tell us about your project..."
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       required

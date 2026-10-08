@@ -18,13 +18,13 @@ const steps = [
     number: "03",
     icon: Code,
     title: "Development",
-    description: "Building your website with clean, efficient code ensuring speed, security, and scalability.",
+    description: "Building your digital solution with clean, efficient code ensuring speed, security, and scalability.",
   },
   {
     number: "04",
     icon: Rocket,
     title: "Launch",
-    description: "Final testing, optimization, and deployment. Your website goes live with ongoing support available.",
+    description: "Final testing, optimization, and deployment. Your product goes live with ongoing support available.",
   },
 ];
 
@@ -39,7 +39,7 @@ const ProcessSection = () => {
           className="text-center max-w-2xl mx-auto mb-16"
         >
           <span className="text-primary uppercase tracking-widest text-sm font-medium">Process</span>
-          <h2 className="font-display text-4xl md:text-5xl font-bold mt-4">How I Work</h2>
+          <h2 className="font-display text-4xl md:text-5xl font-bold mt-4">How We Work</h2>
           <p className="text-muted-foreground mt-4">
             A streamlined process designed to deliver exceptional results efficiently.
           </p>
