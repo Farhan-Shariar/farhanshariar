@@ -53,14 +53,14 @@ const ProcessSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.15 }}
-              className="relative"
+              className="relative h-full"
             >
               {/* Connector Line */}
               {index < steps.length - 1 && (
                 <div className="hidden lg:block absolute top-10 left-[60%] w-full h-px bg-gradient-to-r from-primary/50 to-transparent" />
               )}
 
-              <div className="relative p-8 rounded-2xl bg-card border border-border hover:border-primary/30 transition-all">
+              <div className="process-card relative h-full min-h-[290px] p-8 rounded-lg bg-card border border-border hover:border-primary/30 transition-all">
                 <span className="font-display text-6xl font-bold text-primary/10 absolute top-4 right-4">
                   {step.number}
                 </span>

@@ -49,7 +49,7 @@ const HeroSection = () => {
             className="flex flex-col sm:flex-row gap-4 justify-center mt-10"
           >
             <Button asChild size="lg" className="bg-gradient-gold text-primary-foreground hover:opacity-90 px-8 group">
-              <Link to="/portfolio">
+              <Link to="/projects">
                 View Our Work
                 <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
               </Link>

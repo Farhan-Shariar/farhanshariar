@@ -1,133 +1,27 @@
-import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { motion } from "framer-motion";
-import { Menu, X, Sun, Moon } from "lucide-react";
-import { Button } from "@/components/ui/button";
-
-const navLinks = [
-  { name: "Home", path: "/" },
-  { name: "Portfolio", path: "/portfolio" },
-  { name: "Services", path: "/services" },
-  { name: "About", path: "/about" },
-  { name: "Contact", path: "/contact" },
-];
-
-const Navbar = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [theme, setTheme] = useState<"dark" | "light">("dark");
-  const location = useLocation();
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
-    setIsMobileMenuOpen(false);
-  }, [location]);
-
-  useEffect(() => {
-    const savedTheme = localStorage.getItem("theme") as "dark" | "light" | null;
-    if (savedTheme) {
-      setTheme(savedTheme);
-      document.documentElement.classList.toggle("light", savedTheme === "light");
-    }
-  }, []);
-
-  const toggleTheme = () => {
-    const newTheme = theme === "dark" ? "light" : "dark";
-    setTheme(newTheme);
-    localStorage.setItem("theme", newTheme);
-    document.documentElement.classList.toggle("light", newTheme === "light");
-  };
-
-  return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "glass-card py-3" : "bg-transparent py-6"
-      }`}
-    >
-      <div className="container mx-auto px-6 flex items-center justify-between">
-        <Link to="/" className="font-display text-2xl font-bold text-gradient">
-          ByteVeo
-        </Link>
-
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <Link
-              key={link.path}
-              to={link.path}
-              className={`text-sm font-medium transition-colors hover:text-primary ${
-                location.pathname === link.path ? "text-primary" : "text-muted-foreground"
-              }`}
-            >
-              {link.name}
-            </Link>
-          ))}
-          <button
-            onClick={toggleTheme}
-            className="p-2 rounded-full hover:bg-muted transition-colors"
-            aria-label="Toggle theme"
-          >
-            {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
-          </button>
-          <Button asChild className="bg-gradient-gold text-primary-foreground hover:opacity-90">
-            <Link to="/contact">Work With Us</Link>
-          </Button>
-        </div>
-
-        {/* Mobile Menu Button */}
-        <div className="md:hidden flex items-center gap-2">
-          <button
-            onClick={toggleTheme}
-            className="p-2 rounded-full hover:bg-muted transition-colors"
-            aria-label="Toggle theme"
-          >
-            {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
-          </button>
-          <button
-            className="text-foreground"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile Menu */}
-      {isMobileMenuOpen && (
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="md:hidden glass-card mt-2 mx-4 rounded-lg p-6"
-        >
-          <div className="flex flex-col gap-4">
-            {navLinks.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                className={`text-lg font-medium transition-colors ${
-                  location.pathname === link.path ? "text-primary" : "text-muted-foreground"
-                }`}
-              >
-                {link.name}
-              </Link>
-            ))}
-            <Button asChild className="bg-gradient-gold text-primary-foreground mt-4">
-              <Link to="/contact">Work With Us</Link>
-            </Button>
-          </div>
-        </motion.div>
-      )}
-    </motion.nav>
-  );
-};
-
-export default Navbar;
+import { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { Menu, X, Sun, Moon, ChevronDown } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import BrandLogo from './BrandLogo';
+import ServiceMenu from './ServiceMenu';
+const navLinks = [{ name: 'Home', path: '/' }, { name: 'Projects', path: '/projects' }, { name: 'Services', path: '/services' }, { name: 'About', path: '/about' }, { name: 'Blog', path: '/blog' }];
+export default function Navbar() {
+ const [isScrolled, setIsScrolled] = useState(false);
+ const [mobileOpen, setMobileOpen] = useState(false);
+ const [servicesOpen, setServicesOpen] = useState(false);
+ const [theme, setTheme] = useState<'dark' | 'light'>('dark');
+ const location = useLocation();
+ useEffect(() => { const scroll = () => setIsScrolled(window.scrollY > 30); scroll(); window.addEventListener('scroll', scroll); return () => window.removeEventListener('scroll', scroll); }, []);
+ useEffect(() => { setMobileOpen(false); setServicesOpen(false); }, [location]);
+ useEffect(() => { const saved = localStorage.getItem('theme'); if (saved === 'light' || saved === 'dark') { setTheme(saved); document.documentElement.classList.toggle('light', saved === 'light'); } }, []);
+ const toggleTheme = () => { const next = theme === 'dark' ? 'light' : 'dark'; setTheme(next); localStorage.setItem('theme', next); document.documentElement.classList.toggle('light', next === 'light'); };
+ return <nav aria-label="Main navigation" className={`fixed inset-x-0 top-0 z-50 border-b transition-all ${isScrolled || servicesOpen || mobileOpen ? 'bg-background/95 backdrop-blur-xl border-border' : 'bg-background/90 border-transparent'}`}><div className="container mx-auto px-6 flex justify-between items-center h-20 relative">
+ <Link to="/" aria-label="ByteVeo home"><BrandLogo /></Link>
+ <div className="hidden lg:flex items-center gap-7">{navLinks.map(link => link.name === 'Services' ? <div key={link.path} onMouseEnter={() => setServicesOpen(true)} onMouseLeave={() => setServicesOpen(false)} onBlur={event => { if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setServicesOpen(false); }}>
+ <div className="flex items-center gap-1 h-20"><Link to="/services" onFocus={() => setServicesOpen(true)} className={`text-sm font-medium hover:text-primary ${location.pathname === link.path ? 'text-primary' : 'text-muted-foreground'}`}>Services</Link><Button variant="ghost" size="icon" className="h-6 w-6 hover:bg-transparent hover:text-primary" aria-label="Show services" aria-expanded={servicesOpen} aria-controls="desktop-services" onClick={() => setServicesOpen(!servicesOpen)}><ChevronDown className={servicesOpen ? 'rotate-180 transition-transform' : 'transition-transform'} /></Button></div>
+ {servicesOpen && <div id="desktop-services" className="absolute left-6 right-6 top-full pt-1"><ServiceMenu onNavigate={() => setServicesOpen(false)} /></div>}</div> : <Link key={link.path} to={link.path} className={`text-sm font-medium hover:text-primary ${location.pathname === link.path ? 'text-primary' : 'text-muted-foreground'}`}>{link.name}</Link>)}
+ <Button variant="ghost" size="icon" aria-label="Toggle theme" title="Toggle theme" onClick={toggleTheme}>{theme === 'dark' ? <Sun /> : <Moon />}</Button><Button asChild className="bg-gradient-gold text-primary-foreground"><Link to="/contact">Work With Us</Link></Button></div>
+ <div className="flex lg:hidden gap-1"><Button variant="ghost" size="icon" aria-label="Toggle theme" onClick={toggleTheme}>{theme === 'dark' ? <Sun /> : <Moon />}</Button><Button variant="ghost" size="icon" aria-label={mobileOpen ? 'Close menu' : 'Open menu'} aria-expanded={mobileOpen} onClick={() => setMobileOpen(!mobileOpen)}>{mobileOpen ? <X /> : <Menu />}</Button></div></div>
+ {mobileOpen && <div className="lg:hidden max-h-[calc(100svh-80px)] overflow-y-auto border-t border-border px-6 pb-6 bg-background"><div className="flex flex-col">{navLinks.map(link => <div key={link.path} className="border-b border-border"><div className="flex items-center justify-between"><Link to={link.path} className="py-4 text-foreground">{link.name}</Link>{link.name === 'Services' && <Button variant="ghost" size="icon" aria-label="Show services" aria-expanded={servicesOpen} onClick={() => setServicesOpen(!servicesOpen)}><ChevronDown /></Button>}</div>{link.name === 'Services' && servicesOpen && <ServiceMenu onNavigate={() => setMobileOpen(false)} />}</div>)}<Button asChild className="mt-5"><Link to="/contact">Work With Us</Link></Button></div></div>}
+ </nav>;
+}

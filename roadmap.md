@@ -1,6 +1,9 @@
-# ByteVeo update
-- [x] Rebrand site copy and contact details; preserve current design and themes.
-- [x] Replace personal About with agency/team specialties.
-- [x] Expand services and replace fixed prices with contact for pricing.
-- [x] Add infinite testimonials with soft edges and reduced-motion support.
-- [x] Verify routes, theme switching and animation.
+# ByteVeo site refinement
+- [ ] Align equal-sized process cards.
+- [ ] Rename Portfolio to Projects and improve cards and case-study navigation.
+- [ ] Simplify services, add navigation menu and redesign anchored service sections.
+- [ ] Add Blog listing and readable articles.
+- [ ] Remove About image and add team card layout without invented identities.
+- [ ] Place supplied logo and matching favicon.
+- [ ] Verify interactions and both themes.
+- [ ] Replace team placeholders with real member photos, names and links — waiting for user details.
