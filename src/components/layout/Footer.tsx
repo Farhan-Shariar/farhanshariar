@@ -1,3 +1,5 @@
+import BrandLogo from "./BrandLogo";
+import { services } from "@/data/services";
 import { Link } from "react-router-dom";
 import { Linkedin, ExternalLink, Mail, MapPin } from "lucide-react";
 
@@ -8,8 +10,8 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           {/* Brand */}
           <div className="md:col-span-1">
-            <Link to="/" className="font-display text-2xl font-bold text-gradient">
-              ByteVeo
+            <Link to="/" className="inline-flex">
+              <BrandLogo />
             </Link>
             <p className="text-muted-foreground mt-4 text-sm leading-relaxed">
               Websites, mobile apps and custom software for ambitious businesses. Let's build something extraordinary together.
@@ -20,7 +22,7 @@ const Footer = () => {
           <div>
             <h4 className="font-display font-semibold text-foreground mb-4">Quick Links</h4>
             <div className="flex flex-col gap-3">
-              {["Home", "Portfolio", "Services", "About", "Contact", "Careers"].map((link) => (
+              {["Home", "Projects", "Services", "About", "Blog", "Contact", "Careers"].map((link) => (
                 <Link
                   key={link}
                   to={link === "Home" ? "/" : `/${link.toLowerCase()}`}
@@ -36,13 +38,7 @@ const Footer = () => {
           <div>
             <h4 className="font-display font-semibold text-foreground mb-4">Services</h4>
             <div className="flex flex-col gap-3">
-              {["Web & UI/UX Design", "Mobile Apps & Flutter", "Custom Software", "ERP & CRM", "E-commerce"].map(
-                (service) => (
-                  <Link to="/services" key={service} className="text-muted-foreground text-sm hover:text-primary transition-colors">
-                    {service}
-                  </Link>
-                )
-              )}
+              {services.map(service => <Link to={`/services#${service.id}`} key={service.id} className="text-muted-foreground text-sm hover:text-primary transition-colors">{service.title}</Link>)}
             </div>
           </div>
 
